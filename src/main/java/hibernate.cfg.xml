@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!-- 配置数据库信息 -->
+<hibernate-configuration>
+    <session-factory>
+        <!-- jdbc启动文件 -->
+        <property name = "hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <!-- 对应的数据库名称 -->
+        <property name = "hibernate.connection.url">jdbc:mysql:///checkIn</property>
+        <!-- 数据库用户名 -->
+        <property name = "hibernate.connection.username">root</property>
+        <!-- 密码 -->
+        <property name = "hibernate.connection.password">checkIn</property>
+
+        <!-- hibernate 格式信息 可选的 -->
+        <!-- 输出底层的sql语句 -->
+        <property name = "hibernate.show_sql">true</property>
+        <!-- 输出底层sql语句的格式 -->
+        <property name = "hibernate.format_sql">true</property>
+        <!-- 自动查询表 没有自动创建 -->
+        <property name = "hibernate.hbm2ddl.auto">update</property>
+        <!-- 配置sql方言 -->
+        <property name = "hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- 把映射文件放到核心文件当中 -->
+<!--        <mapping resource = "cn/zzuli/lhk/hbm.xml"></mapping>-->
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping
+        PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="indi.etern.checkIn.beans.question.Question" table="b_questions">
+        <id name="md5" column="id" type="java.lang.String">
+            <generator class="native"/>
+        </id>
+        <property name="content" column="content" type="java.lang.String"/>
+        <union-subclass name="indi.etern.checkIn.beans.question.impl.multipleQuestion.MultipleCorrectQuestion" table="b_multiple_correct_question">
+            <list name="choices" >
+                <key column="question_choices" foreign-key="id"/>
+                <list-index column="question_choices_index"/>
+                <element type="indi.etern.checkIn.beans.question.interfaces.multipleChoice.Choice"/>
+            </list>
+            <list name="correctChoices" >
+                <key column="question_correct_choices" foreign-key="id"/>
+                <list-index column="question_correct_choices_index"/>
+                <element type="indi.etern.checkIn.beans.question.interfaces.multipleChoice.Choice"/>
+            </list>
+        </union-subclass>
+        <union-subclass name="indi.etern.checkIn.beans.question.impl.multipleQuestion.SingleCorrectQuestion" table="b_single_correct_question">
+            <list name="choices" >
+                <key column="question_choices" foreign-key="id"/>
+                <list-index column="question_choices_index"/>
+                <element type="indi.etern.checkIn.beans.question.interfaces.multipleChoice.Choice"/>
+            </list>
+            <property name="correctChoice" column="question_correct_choice" type="indi.etern.checkIn.beans.question.interfaces.multipleChoice.Choice"/>
+        </union-subclass>
+    </class>
+</hibernate-mapping>
